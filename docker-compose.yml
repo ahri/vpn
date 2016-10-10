@@ -1,0 +1,23 @@
+vpn:
+        image: "siomiz/softethervpn:latest"
+
+        cap_add:
+                - NET_ADMIN
+
+        ports:
+                # L2TP/IPSec PSK
+                - "500:500/udp"
+                - "4500:4500/udp"
+                - "1701:1701/tcp"
+
+                # OpenVPN
+                - "1194:1194/udp"
+
+                # SoftEther
+                - "5555:5555/tcp"
+
+        restart: always
+
+        environment:
+                PSK: notasecret
+                USERS: user1:pass;user2:pass
